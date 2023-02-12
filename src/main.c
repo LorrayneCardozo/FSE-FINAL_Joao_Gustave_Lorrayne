@@ -12,6 +12,8 @@
 #include "ky036.c"
 #include "ky003.c"
 #include "ky038.c"
+#include "flame_detector.c"
+#include "reed_switch.c"
 
 #include "wifi.h"
 #include "mqtt.h"
@@ -38,7 +40,9 @@ void trataComunicacaoComServidor(void *params)
   // xTaskCreate(&init_dht11, "Rotina do DHT11", 4096, NULL, 1, NULL);
   // xTaskCreate(&init_ky036, "Rotina do KY036", 4096, NULL, 1, NULL);
   // xTaskCreate(&hall_sensor_task, "Hall_Sensor_Task", 2048, NULL, 10, NULL);
-  xTaskCreate(voice_sensor_task, "Voice_Sensor", 2048, NULL, 10, NULL);
+  // xTaskCreate(voice_sensor_task, "Voice_Sensor", 2048, NULL, 10, NULL);
+  xTaskCreate(flame_sensor_task, "Flame_Sensor", 2048, NULL, 10, NULL);
+  xTaskCreate(reed_switch_task, "Reed_Switch", 2048, NULL, 10, NULL);
 
   vTaskDelete(NULL);
 }
