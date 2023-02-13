@@ -156,7 +156,7 @@ void init_dht11(){
         mqtt_envia_mensagem("v1/devices/me/telemetry", mensagem);
         grava_valor_nvs("Umidade", umidade);
 
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        vTaskDelay(10000 / portTICK_PERIOD_MS);
     }
     vTaskDelete(NULL);
 }
