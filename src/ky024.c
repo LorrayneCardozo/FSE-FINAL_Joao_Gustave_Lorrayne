@@ -10,7 +10,7 @@
 #include "gpio_setup.h"
 #include "nvs_handler.h"
 
-#define REED_SWITCH_PIN 4
+#define REED_SWITCH_PIN 19
 
 void read_reed_switch(void *pvParameter)
 {

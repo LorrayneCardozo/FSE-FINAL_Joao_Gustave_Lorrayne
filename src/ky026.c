@@ -10,7 +10,7 @@
 #include "gpio_setup.c"
 #include "nvs_handler.h"
 
-#define FLAME_SENSOR_PIN 2
+#define FLAME_SENSOR_PIN 5
 
 void read_flame_sensor(void *pvParameter)
 {
