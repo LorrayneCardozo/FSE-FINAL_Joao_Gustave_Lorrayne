@@ -13,7 +13,7 @@
 #define VOICE_SENSOR_PIN 4
 #define LED_PIN 2
 
-void voice_sensor_task(void *pvParameter)
+void read_sound_sensor(void *pvParameter)
 {
     pinMode(HALL_SENSOR_PIN, GPIO_INPUT);
     pinMode(LED_PIN, GPIO_OUTPUT);

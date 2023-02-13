@@ -14,7 +14,7 @@
 
 extern void mqtt_envia_mensagem(char *topico, char *mensagem);
 
-void init_ky036(){
+void read_touch_sensor(){
     pinMode(TOUCH_PIN, GPIO_INPUT);
     
     char mensagem[50];

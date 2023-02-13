@@ -12,7 +12,7 @@
 
 #define FLAME_SENSOR_PIN 2
 
-void flame_sensor_task(void *pvParameter)
+void read_flame_sensor(void *pvParameter)
 {
     pinMode(FLAME_SENSOR_PIN, GPIO_INPUT);
 

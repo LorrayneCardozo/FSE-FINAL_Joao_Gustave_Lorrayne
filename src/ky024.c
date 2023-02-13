@@ -12,7 +12,7 @@
 
 #define REED_SWITCH_PIN 4
 
-void reed_switch_task(void *pvParameter)
+void read_reed_switch(void *pvParameter)
 {
     pinMode(REED_SWITCH_PIN, GPIO_INPUT);
 
