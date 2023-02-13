@@ -16,6 +16,7 @@ void config_pwm()
       .freq_hz = 1000,
       .clk_cfg = LEDC_AUTO_CLK};
   ledc_timer_config(&timer_config);
+  
   ledc_channel_config_t channel_config = {
       .gpio_num = LED,
       .speed_mode = LEDC_LOW_SPEED_MODE,
