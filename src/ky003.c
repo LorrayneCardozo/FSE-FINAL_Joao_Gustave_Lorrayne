@@ -9,6 +9,7 @@
 
 #include "gpio_setup.h"
 #include "nvs_handler.h"
+#include "mqtt.h"
 
 #define LED_PIN 2
 #define HALL_SENSOR_PIN 4

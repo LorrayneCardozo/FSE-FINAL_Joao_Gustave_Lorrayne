@@ -17,8 +17,8 @@
 
 #include "esp_log.h"
 #include "mqtt_client.h"
-#include "cJSON.h"
 
+#include "cJSON.h"
 #include "pwm.h"
 #include "mqtt.h"
 
@@ -66,7 +66,7 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
 
         cJSON *json = cJSON_Parse(event->data);
         if (json == NULL)
-            return;
+            fprintf(stderr, "Error: %s\n", cJSON_GetErrorPtr());
 
         char *chave = cJSON_GetObjectItem(json, "method")->valuestring;
         int valor = cJSON_GetObjectItem(json, "params")->valueint;
@@ -74,6 +74,8 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
         if (strstr(chave, "set") != NULL)
             if (strcmp("setPWM", chave) == 0)
                 set_pwm(valor);
+        cJSON_Delete(json);
+
         break;
     case MQTT_EVENT_ERROR:
         ESP_LOGI(TAG, "MQTT_EVENT_ERROR");
