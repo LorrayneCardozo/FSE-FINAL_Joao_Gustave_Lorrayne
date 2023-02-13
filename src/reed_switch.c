@@ -10,26 +10,25 @@
 #include "gpio_setup.h"
 #include "nvs_handler.h"
 
-#define LED_PIN 2
-#define HALL_SENSOR_PIN 4
+#define REED_SWITCH_PIN 4
 
-void hall_sensor_task(void *pvParameter)
+void reed_switch_task(void *pvParameter)
 {
-    pinMode(HALL_SENSOR_PIN, GPIO_INPUT);
-    pinMode(LED_PIN, GPIO_OUTPUT);
+    pinMode(REED_SWITCH_PIN, GPIO_INPUT);
 
     char mensagem[50];
 
     while (1)
     {
-        int state = digitalRead(HALL_SENSOR_PIN); // lê o estado do pino
+        int state = digitalRead(REED_SWITCH_PIN); // lê o estado do pino
 
-        printf("Hall Magnetic: %d\n", state);
-        sprintf(mensagem, "{\"HallMagnetic\": %d}", state);
+        printf("Reed Switch: %d\n", state);
+        sprintf(mensagem, "{\"ReedSwitch\": %d}", state);
         mqtt_envia_mensagem("v1/devices/me/telemetry", mensagem);
-        grava_valor_nvs("HallMagnetic", state);
+        grava_valor_nvs("ReedSwitch", state);
 
         vTaskDelay(1000 / portTICK_PERIOD_MS); // aguarde por 1 segundo
     }
+
     vTaskDelete(NULL);
 }

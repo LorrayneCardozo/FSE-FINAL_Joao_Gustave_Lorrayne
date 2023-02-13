@@ -7,29 +7,28 @@
 #include "freertos/semphr.h"
 #include "esp_adc/adc_oneshot.h"
 
-#include "gpio_setup.h"
+#include "gpio_setup.c"
 #include "nvs_handler.h"
 
-#define LED_PIN 2
-#define HALL_SENSOR_PIN 4
+#define FLAME_SENSOR_PIN 2
 
-void hall_sensor_task(void *pvParameter)
+void flame_sensor_task(void *pvParameter)
 {
-    pinMode(HALL_SENSOR_PIN, GPIO_INPUT);
-    pinMode(LED_PIN, GPIO_OUTPUT);
+    pinMode(FLAME_SENSOR_PIN, GPIO_INPUT);
 
     char mensagem[50];
 
     while (1)
     {
-        int state = digitalRead(HALL_SENSOR_PIN); // lê o estado do pino
+        int state = digitalRead(FLAME_SENSOR_PIN); // lê o estado do pino
 
-        printf("Hall Magnetic: %d\n", state);
-        sprintf(mensagem, "{\"HallMagnetic\": %d}", state);
+        printf("Flame Detector: %d\n", state);
+        sprintf(mensagem, "{\"FlameDetector\": %d}", state);
         mqtt_envia_mensagem("v1/devices/me/telemetry", mensagem);
-        grava_valor_nvs("HallMagnetic", state);
+        grava_valor_nvs("FlameDetector", state);
 
         vTaskDelay(1000 / portTICK_PERIOD_MS); // aguarde por 1 segundo
     }
+
     vTaskDelete(NULL);
 }
