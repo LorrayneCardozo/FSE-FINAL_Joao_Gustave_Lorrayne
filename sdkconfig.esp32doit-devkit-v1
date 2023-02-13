@@ -306,6 +306,13 @@ CONFIG_PARTITION_TABLE_MD5=y
 # end of Partition Table
 
 #
+# Modo de operação do dispositivo
+#
+CONFIG_ENERGY_MODE=y
+# CONFIG_BATTERY_MODE is not set
+# end of Modo de operação do dispositivo
+
+#
 # Configuração do Wifi
 #
 CONFIG_ESP_WIFI_SSID="Sala"
