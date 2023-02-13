@@ -7,7 +7,7 @@
 | Nome | Matrícula  |
 | :- | :- |
 | Gustave Augusto Persijn | 19/0046091 |
-| João Victor  |  |
+| João Victor  | 19/0109963 |
 | Lorrayne Alves Cardozo | 19/0032863 |
 
 
@@ -18,6 +18,8 @@
 | KY036  | Toque |
 | KY038  | Voz |
 | KY003  | Hall Magnético |
+| KY026  | Detector de Chama |
+| KY024  | Reed Switch |
 
 
 ## Dashboard
