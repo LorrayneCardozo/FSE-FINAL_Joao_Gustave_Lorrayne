@@ -7,25 +7,25 @@
 #include "freertos/semphr.h"
 #include "esp_adc/adc_oneshot.h"
 
-#include "gpio_setup.h"
+#include "gpio_setup.c"
 #include "nvs_handler.h"
 
-#define REED_SWITCH_PIN 4
+#define FLAME_SENSOR_PIN 2
 
-void reed_switch_task(void *pvParameter)
+void read_flame_sensor(void *pvParameter)
 {
-    pinMode(REED_SWITCH_PIN, GPIO_INPUT);
+    pinMode(FLAME_SENSOR_PIN, GPIO_INPUT);
 
     char mensagem[50];
 
     while (1)
     {
-        int state = digitalRead(REED_SWITCH_PIN); // lê o estado do pino
+        int state = digitalRead(FLAME_SENSOR_PIN); // lê o estado do pino
 
-        printf("Reed Switch: %d\n", state);
-        sprintf(mensagem, "{\"ReedSwitch\": %d}", state);
+        printf("Flame Detector: %d\n", state);
+        sprintf(mensagem, "{\"FlameDetector\": %d}", state);
         mqtt_envia_mensagem("v1/devices/me/telemetry", mensagem);
-        grava_valor_nvs("ReedSwitch", state);
+        grava_valor_nvs("FlameDetector", state);
 
         vTaskDelay(1000 / portTICK_PERIOD_MS); // aguarde por 1 segundo
     }

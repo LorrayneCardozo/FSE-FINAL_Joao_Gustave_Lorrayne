@@ -9,8 +9,8 @@
 #include "ky036.h"
 #include "ky003.c"
 #include "ky038.c"
-#include "flame_detector.c"
-#include "reed_switch.c"
+#include "ky026.c"
+#include "ky024.c"
 #include "esp_sleep.h"
 #include "esp32/rom/uart.h"
 #include <time.h>
@@ -35,11 +35,11 @@ void energia()
   config_pwm();
 
   // xTaskCreate(&init_dht11, "Rotina do DHT11", 2048, NULL, 1, NULL);
-  // xTaskCreate(&init_ky036, "Rotina do KY036", 2048, NULL, 1, NULL);
-  xTaskCreate(&hall_sensor_task, "Hall_Sensor_Task", 2048, NULL, 10, NULL);
-  // xTaskCreate(voice_sensor_task, "Voice_Sensor", 2048, NULL, 10, NULL);
-  // xTaskCreate(flame_sensor_task, "Flame_Sensor", 2048, NULL, 10, NULL);
-  // xTaskCreate(reed_switch_task, "Reed_Switch", 2048, NULL, 10, NULL);
+  // xTaskCreate(&read_touch_sensor, "Rotina do KY036", 2048, NULL, 1, NULL);
+  xTaskCreate(&read_hall_magnetic_sensor, "Hall_Sensor_Task", 2048, NULL, 10, NULL);
+  // xTaskCreate(read_sound_sensor, "Voice_Sensor", 2048, NULL, 10, NULL);
+  // xTaskCreate(read_flame_sensor, "Flame_Sensor", 2048, NULL, 10, NULL);
+  // xTaskCreate(read_reed_switch, "Reed_Switch", 2048, NULL, 10, NULL);
 }
 
 void bateria()

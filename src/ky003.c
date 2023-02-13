@@ -14,7 +14,7 @@
 #define LED_PIN 2
 #define HALL_SENSOR_PIN 4
 
-void hall_sensor_task(void *pvParameter)
+void read_hall_magnetic_sensor(void *pvParameter)
 {
     pinMode(HALL_SENSOR_PIN, GPIO_INPUT);
     pinMode(LED_PIN, GPIO_OUTPUT);
