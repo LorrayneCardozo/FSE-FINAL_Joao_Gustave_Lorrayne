@@ -10,8 +10,8 @@
 #include "ky036.h"
 #include "ky003.c"
 #include "ky038.c"
-#include "flame_detector.c"
-#include "reed_switch.c"
+#include "ky026.c"
+#include "ky024.c"
 
 void energia(){
 
