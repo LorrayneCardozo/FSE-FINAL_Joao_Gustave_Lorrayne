@@ -17,8 +17,8 @@ void energia(){
 
   config_pwm();
 
-  // xTaskCreate(&init_dht11, "Rotina do DHT11", 2048, NULL, 1, NULL);
-  xTaskCreate(&init_ky036, "Rotina do KY036", 2048, NULL, 1, NULL);
+  xTaskCreate(&init_dht11, "Temperatura_Umidade", 2048, NULL, 1, NULL);
+  xTaskCreate(&init_ky036, "Touch", 2048, NULL, 1, NULL);
   // xTaskCreate(&hall_sensor_task, "Hall_Sensor_Task", 2048, NULL, 10, NULL);
   // xTaskCreate(voice_sensor_task, "Voice_Sensor", 2048, NULL, 10, NULL);
   //xTaskCreate(flame_sensor_task, "Flame_Sensor", 2048, NULL, 10, NULL);
