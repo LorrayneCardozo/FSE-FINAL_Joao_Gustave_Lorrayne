@@ -34,12 +34,12 @@ void energia()
 
   config_pwm();
 
-  // xTaskCreate(&init_dht11, "Rotina do DHT11", 2048, NULL, 1, NULL);
-  // xTaskCreate(&read_touch_sensor, "Rotina do KY036", 2048, NULL, 1, NULL);
-  xTaskCreate(&read_hall_magnetic_sensor, "Hall_Sensor_Task", 2048, NULL, 10, NULL);
-  // xTaskCreate(read_sound_sensor, "Voice_Sensor", 2048, NULL, 10, NULL);
-  // xTaskCreate(read_flame_sensor, "Flame_Sensor", 2048, NULL, 10, NULL);
-  // xTaskCreate(read_reed_switch, "Reed_Switch", 2048, NULL, 10, NULL);
+   xTaskCreate(&init_dht11, "Temperatura_Umidade", 2048, NULL, 1, NULL);
+   xTaskCreate(&read_touch_sensor, "Touch", 2048, NULL, 1, NULL);
+   xTaskCreate(&read_hall_magnetic_sensor, "Hall_Sensor_Task", 2048, NULL, 10, NULL);
+   //xTaskCreate(read_sound_sensor, "Voice_Sensor", 2048, NULL, 10, NULL);
+   //xTaskCreate(read_flame_sensor, "Flame_Sensor", 2048, NULL, 10, NULL);
+   //xTaskCreate(read_reed_switch, "Reed_Switch", 2048, NULL, 10, NULL);
 }
 
 void bateria()
@@ -47,7 +47,7 @@ void bateria()
   char mensagem[50];
 
   // Configuração da GPIO para o botão de entrada
-  pinMode(HALL_SENSOR_PIN, GPIO_INPUT);
+  pinMode(HALL, GPIO_INPUT_PULLUP);
 
   gpio_wakeup_enable(HALL, GPIO_INTR_HIGH_LEVEL);
   esp_sleep_enable_gpio_wakeup();
@@ -65,12 +65,14 @@ void bateria()
     if (causa == ESP_SLEEP_WAKEUP_GPIO)
     {
       printf("\nO sensor despertou!\n");
-      printf("Hall Magnetic: %d\n", state);
-      sprintf(mensagem, "{\"HallMagnetic\": %d}", state);
+      printf("Touch: %d\n", state);
+      sprintf(mensagem, "{\"Touch\": %d}", state);
       mqtt_envia_mensagem("v1/devices/me/telemetry", mensagem);
-      grava_valor_nvs("HallMagnetic", state);
+      grava_valor_nvs("Touch", state);
       causa = ESP_SLEEP_WAKEUP_TIMER;
       printf("Mensagem enviada!\n\n");
+      vTaskDelay(1000 / portTICK_PERIOD_MS); // aguarde por 1 segundo
     }
+    
   }
 }
