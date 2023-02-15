@@ -26,4 +26,4 @@
 ![](./img/dashboard.png)
 
 ## Apresentação
-[Link do vídeo de apresentação]()
+[Link do vídeo de apresentação](https://youtu.be/3A2mMw1C4Ew)

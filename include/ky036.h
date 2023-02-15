@@ -1,6 +1,6 @@
 #ifndef KY036_H
 #define KY036_H
 
-void init_ky036();
+void read_touch_sensor();
 
 #endif
